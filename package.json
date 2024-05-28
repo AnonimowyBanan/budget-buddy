@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "tailwind-dev": "npx tailwindcss -i ./resources/css/input.css -o ./public/css/tailwind.css --watch"
     },
     "devDependencies": {
         "axios": "^1.6.4",

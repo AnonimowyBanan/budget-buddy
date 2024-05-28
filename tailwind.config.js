@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    './resources/**/*.{php, js}',
+  ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+      require('daisyui'),
+  ],
 }
 
