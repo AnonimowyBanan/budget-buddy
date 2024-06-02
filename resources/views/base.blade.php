@@ -32,6 +32,10 @@
             </button>
         </div>
     </div>
-    @yield('content')
+    <div class="flex justify-center">
+        <div class="container">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>
