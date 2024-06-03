@@ -35,6 +35,6 @@
             />
 
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">{{ __('messages.register') }}</button>
     </form>
 @endsection

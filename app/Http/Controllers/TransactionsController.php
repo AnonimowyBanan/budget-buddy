@@ -6,13 +6,16 @@ use App\Models\Budget;
 use App\Models\Transaction;
 use App\Models\TransactionCategory;
 use App\Models\TransactionType;
+use App\Services\BudgetService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class TransactionsController extends Controller
 {
-    public function add(): View
+    public function viewAdd(): View
     {
         return view('transaction.form', [
             'transactionCategories' => TransactionCategory::all(),
@@ -20,7 +23,7 @@ class TransactionsController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function add(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'transaction_category_id' => ['required'],
@@ -29,18 +32,20 @@ class TransactionsController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
-            $transaction = new Transaction();
-            $transaction->create([
-                'transaction_category_id' => $request->transaction_category_id,
-                'transaction_type_id'     => $request->transaction_type_id,
-                'amount'                  => $request->amount,
-                'transaction_date'        => $request->transaction_date,
+            $transaction = Transaction::create([
+                'user_id'           => Auth::user()->id,
+                'category_id'       => $request->transaction_category_id,
+                'type_id'           => $request->transaction_type_id,
+                'amount'            => $request->amount,
+                'transaction_date'  => $request->transaction_date
             ]);
+
             $transaction->save();
 
-            if ($request->transaction_category_id == config('constants.transaction_category.income')) {
-                $budget = Budget::actual()->first();
-            }
+            BudgetService::updateBudget($request->transaction_type_id, $request->amount);
+
         });
+
+        return redirect()->route('home');
     }
 }

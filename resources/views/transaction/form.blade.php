@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('content')
-    <form action="{{ route('transaction.store') }}" method="POST">
+    <form action="{{ route('transaction.add') }}" method="POST">
         @csrf
         <x-select-field
             name="transaction_category_id"
@@ -13,8 +13,19 @@
             :options="$transactionTypes"
             :required="true"
         />
-        <input type="number" placeholder="Type here" class="input w-full max-w-xs" />
-        <input type="date" placeholder="Type here" class="input w-full max-w-xs" />
-        <button class="btn">Button</button>
+        <x-input-field
+            label="Amount"
+            type="number"
+            name="amount"
+            :required="true"
+        />
+        <x-input-field
+            label="Transaction date"
+            type="date"
+            name="transaction_date"
+            :required="true"
+        />
+
+        <button class="btn">Add</button>
     </form>
 @endsection

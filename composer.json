@@ -6,6 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "andreiio/blade-remix-icon": "^3.2",
+        "attrixtech/laravel-icons": "^1.2",
+        "blade-ui-kit/blade-icons": "^1.6",
+        "codeat3/blade-carbon-icons": "^2.25",
+        "icehouse-ventures/laravel-chartjs": "^1.2",
+        "khatabwedaa/blade-css-icons": "^1.4",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9"
     },
