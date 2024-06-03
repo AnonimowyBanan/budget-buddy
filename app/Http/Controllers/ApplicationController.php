@@ -16,7 +16,7 @@ class ApplicationController extends Controller
                 ->actual()
                 ->first(),
             'transactions'  => Transaction::forCurrentUser()
-                ->paginate(10)
+                ->get()
         ]);
     }
 }
