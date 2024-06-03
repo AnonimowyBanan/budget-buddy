@@ -69,7 +69,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-square btn-outline" href="{{ route('transaction.viewDdd') }}"><x-eva-edit-outline /></a>
+                                <a class="btn btn-square btn-outline" href="{{ route('transaction.viewEdit', ['transactionID' => $transaction->id]) }}"><x-eva-edit-outline /></a>
                             </td>
                         </tr>
                     @endforeach

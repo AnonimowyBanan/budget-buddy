@@ -48,4 +48,15 @@ class TransactionsController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function viewEdit($transactionID)
+    {
+        $transaction = Transaction::findOrFail($transactionID);
+
+        return view('transaction.form', [
+            'transaction'           => $transaction,
+            'transactionCategories' => TransactionCategory::all(),
+            'transactionTypes'      => TransactionType::all(),
+        ]);
+    }
 }

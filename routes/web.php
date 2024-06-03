@@ -11,6 +11,11 @@ Route::get('/', [ApplicationController::class, 'home'])->name('home');
 Route::prefix('transaction')->group(function () {
     Route::get('add', [TransactionsController::class, 'viewAdd'])->name('transaction.viewDdd');
     Route::post('add', [TransactionsController::class, 'add'])->name('transaction.add');
+    Route::prefix('{transactionID}')->group(function () {
+        Route::get('edit', [TransactionsController::class, 'viewEdit'])->name('transaction.viewEdit');
+        Route::post('edit', [TransactionsController::class, 'edit'])->name('transaction.edit');
+        Route::get('delete', [TransactionsController::class, 'delete'])->name('transaction.delete');
+    });
 });
 
 Route::prefix('auth')->group(function () {
