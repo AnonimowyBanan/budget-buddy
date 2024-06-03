@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionCategory extends Model
 {
     use HasFactory;
+
+    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
