@@ -8,10 +8,11 @@ use Illuminate\View\Component;
 
 class SelectField extends Component
 {
-    private object $options;
-    private int $selected;
-    private bool $required;
-    private string $name;
+    public object $options;
+    public int $selected;
+    public bool $required;
+    public string $name;
+    public string $label;
 
     /**
      * Create a new component instance.
@@ -21,12 +22,14 @@ class SelectField extends Component
         string $name,
         int $selected = 0,
         bool $required = false,
+        string $label = ''
     )
     {
         $this->options  = $options;
         $this->name     = $name;
         $this->selected = $selected;
         $this->required = $required;
+        $this->label    = $label;
     }
 
     /**
@@ -38,7 +41,8 @@ class SelectField extends Component
             'options'  => $this->options,
             'name'     => $this->name,
             'selected' => $this->selected,
-            'required' => $this->required
+            'required' => $this->required,
+            'label'    => $this->label,
         ]);
     }
 }

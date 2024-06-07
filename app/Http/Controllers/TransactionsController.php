@@ -49,7 +49,7 @@ class TransactionsController extends Controller
         return redirect()->route('home');
     }
 
-    public function viewEdit($transactionID)
+    public function viewEdit($transactionID): View
     {
         $transaction = Transaction::findOrFail($transactionID);
 
