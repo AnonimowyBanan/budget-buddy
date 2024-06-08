@@ -12,12 +12,13 @@ class ApplicationController extends Controller
 {
     public function home()
     {
+
         return view('home', [
             'budget'    => Budget::forCurrentUser()
                 ->actual()
                 ->first(),
             'transactions'  => Transaction::forCurrentUser()
-                ->get(),
+                ->paginate(5),
             'transactions_limits' => TransactionsLimit::forCurrentUser()
                 ->current()
                 ->get()

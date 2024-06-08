@@ -70,6 +70,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <x-pagination
+                :paginationElements="$transactions"
+            />
         </div>
     </div>
     <div class="flex gap-6">
@@ -87,9 +90,15 @@
                     @foreach($transactions_limits as $transactions_limit)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td></td>
+                            <td>{{ $transaction->category->name }}</td>
                             <td>{{ $transactions_limit->limit }}</td>
-                            <td></td>
+                            <td>
+                                <x-progress-bar
+                                    :progress="$transactions->where('category_id', 2)->where('type_id', \App\Models\TransactionType::EXPENSE)->sum('amount')"
+                                    :limit="$transactions_limit->limit"
+                                />
+                            </td>
+                            <td><a class="btn btn-square btn-outline"><x-carbon-view /></a></td>
                         </tr>
                     @endforeach
                 </tbody>

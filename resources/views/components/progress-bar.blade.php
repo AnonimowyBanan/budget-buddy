@@ -1,1 +1,1 @@
-<progress class="progress progress-error w-56" value="40" max="100"></progress>
+<progress class="progress {{ $statusClass }} w-56" value="{{ $progress }}" max="{{ $limit }}"></progress>
